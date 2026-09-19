@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zion Leroy - Dossier</title>
+<meta name="description" content="Background RP de Zion Leroy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,900;1,6..96,400&family=Archivo:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --encre:#0B0D12;
+  --encre-2:#12161E;
+  --trait:#242A36;
+  --texte:#E7E2D9;
+  --texte-2:#A6A198;
+  --texte-3:#63605A;
+
+  --feutre:#4FA08A;
+  --rouille:#C8703C;
+  --acier:#6FA8B8;
+  --accent:var(--feutre);
+
+  --display:'Bodoni Moda',serif;
+  --corps:'Archivo',sans-serif;
+  --data:'DM Mono',monospace;
+
+  --rail:0px;
+  --marge:clamp(20px,5vw,56px);
+  --colonne:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:40px}
+body{
+  background:var(--encre);color:var(--texte);font-family:var(--corps);
+  font-size:18px;line-height:1.9;overflow-x:hidden;
+  transition:background-color 1.2s ease;padding-left:var(--rail);
+}
+body.froid{background:#090C11}
+::selection{background:var(--accent);color:var(--encre)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+
+/* ============ RAIL ============ */
+.rail{position:fixed;left:0;top:0;bottom:0;width:var(--rail);z-index:40;display:none}
+.rail-ligne{position:absolute;left:34px;top:0;bottom:0;width:1px;background:var(--trait)}
+.rail-fill{position:absolute;left:34px;top:0;width:1px;height:0;background:var(--accent);transition:height .12s linear,background-color 1s ease}
+.rail-liens{position:absolute;left:0;top:0;bottom:0}
+.rail-liens a{
+  position:absolute;left:29px;display:flex;align-items:center;gap:14px;
+  font-family:var(--data);font-size:.64rem;letter-spacing:.12em;
+  color:var(--texte-3);text-decoration:none;white-space:nowrap;
+  transform:translateY(-50%);transition:color .4s ease;
+}
+.rail-liens a::before{
+  content:"";width:9px;height:9px;flex:none;border-radius:50%;
+  background:var(--encre);border:1px solid var(--trait);
+  transition:background .4s ease,border-color .4s ease,transform .3s ease;
+}
+.rail-liens a:hover{color:var(--texte-2)}
+.rail-liens a.actif{color:var(--accent)}
+.rail-liens a.actif::before{background:var(--accent);border-color:var(--accent);transform:scale(1.3)}
+
+.progress-mobile{position:fixed;top:0;left:0;height:2px;z-index:60;background:var(--accent);transition:background-color 1s ease;width:0}
+
+/* ============ GRILLE ============ */
+.bande{padding-inline:var(--marge)}
+.bande > *{max-width:var(--colonne);margin-left:0;margin-right:auto}
+.colonne{max-width:var(--colonne)}
+section{padding-block:clamp(46px,7vh,88px);position:relative}
+section + section::before{
+  content:"";position:absolute;top:0;left:var(--marge);right:var(--marge);
+  height:1px;background:var(--trait);max-width:var(--colonne);margin-inline:0 auto;
+}
+
+/* ============ TITRES ET TEXTE ============ */
+.tete{max-width:var(--colonne);margin-bottom:clamp(28px,4.5vh,50px)}
+.label{font-family:var(--data);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:16px;transition:color 1s ease}
+h2{font-family:var(--display);font-weight:400;font-style:italic;font-size:clamp(2rem,5vw,3.2rem);line-height:1.08;letter-spacing:-.01em;color:var(--texte)}
+h2 em{font-style:normal;font-weight:900}
+h3{font-family:var(--corps);font-weight:600;font-size:1.05rem;color:var(--texte);margin:28px 0 8px}
+p{color:var(--texte-2);margin-bottom:24px}
+p:last-child{margin-bottom:0}
+.colonne p,.encadre p{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto}
+
+/* ============ HERO ============ */
+.hero{padding-block:clamp(80px,14vh,150px) clamp(44px,7vh,80px)}
+.hero-tag{font-family:var(--data);font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--texte-3);margin-bottom:clamp(26px,5vh,46px)}
+.hero-nom{font-family:var(--display);font-weight:900;font-size:clamp(2.6rem,11.5vw,9rem);line-height:.9;letter-spacing:-.035em;margin-bottom:clamp(22px,4vh,38px);white-space:nowrap}
+.hero-nom .second{font-style:italic;font-weight:400;color:var(--feutre)}
+.hero-phrase{font-family:var(--display);font-size:clamp(1.02rem,2.4vw,1.4rem);font-style:italic;color:var(--texte-2);max-width:48ch;line-height:1.55}
+@media (min-width:1080px){
+  .hero-phrase{white-space:nowrap;max-width:var(--colonne);font-size:min(calc((100vw - 130px) / 52),22px);line-height:1.5}
+}
+@media (min-width:1320px){
+  .hero-phrase{font-size:min(calc((100vw - 380px) / 52),22px)}
+}
+.regle{height:1px;background:var(--trait);max-width:var(--colonne);margin:0 auto 0 0}
+
+/* ============ FICHE ============ */
+.fiche{max-width:var(--colonne);margin-left:0}
+.fiche-desc{font-size:1.05rem;margin-bottom:34px}
+.donnees{border-top:1px solid var(--trait);columns:2;column-gap:clamp(24px,4vw,52px)}
+.donnees div{display:flex;justify-content:space-between;gap:18px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--trait);break-inside:avoid}
+.donnees dt{font-family:var(--data);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--texte-3)}
+.donnees dd{font-family:var(--data);font-size:.85rem;color:var(--texte);text-align:right}
+.traits{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.traits span{font-family:var(--data);font-size:.72rem;letter-spacing:.05em;padding:5px 13px;border:1px solid var(--trait);color:var(--texte-2)}
+
+/* ============ LISTES ============ */
+.liste{list-style:none;max-width:var(--colonne)}
+.liste li{position:relative;padding-left:20px;color:var(--texte-2);margin-bottom:13px;line-height:1.7}
+.liste li:last-child{margin-bottom:0}
+.liste li::before{content:"";position:absolute;left:0;top:.85em;width:9px;height:1px;background:var(--accent);transition:background 1s ease}
+.liste li b{color:var(--texte);font-weight:600}
+
+/* ============ ENCADRES ============ */
+.encadre{border:1px solid var(--trait);border-left:2px solid var(--accent);background:var(--encre-2);padding:clamp(22px,4vw,36px);max-width:var(--colonne);margin-block:clamp(26px,4vh,40px);transition:border-color 1s ease}
+.encadre .etiquette{font-family:var(--data);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px;transition:color 1s ease}
+.encadre.rouille{border-left-color:var(--rouille)}
+.encadre.rouille .etiquette{color:var(--rouille)}
+
+.replique{border-left:2px solid var(--rouille);padding:4px 0 4px clamp(20px,3vw,32px);margin-block:clamp(26px,4vh,40px);max-width:var(--colonne)}
+.replique p{font-family:var(--display);font-style:italic;font-size:clamp(1.15rem,2.5vw,1.55rem);color:var(--texte);line-height:1.45;margin:0;text-align:left}
+.replique .qui{font-family:var(--data);font-style:normal;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--rouille);display:block;margin-bottom:10px}
+
+/* ============ FILS ROUGES ============ */
+.fils{border-top:1px solid var(--trait);max-width:var(--colonne)}
+.fil{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:clamp(18px,3vw,40px);padding:20px 0;border-bottom:1px solid var(--trait)}
+.fil dt{font-family:var(--corps);font-weight:600;font-size:1rem;color:var(--texte)}
+.fil dd{color:var(--texte-2);font-size:.94rem;line-height:1.65}
+
+footer{border-top:1px solid var(--trait);padding:36px var(--marge) 52px;margin-top:48px}
+footer p{font-family:var(--data);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--texte-3);margin:0;max-width:var(--colonne);margin-right:auto}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
+.reveal.vu{opacity:1;transform:none}
+
+@media (min-width:1320px){
+  :root{--rail:210px}
+  .rail{display:block}
+  .progress-mobile{display:none}
+}
+@media (max-width:900px){
+  .donnees{columns:1}
+}
+@media (max-width:640px){
+  body{font-size:17px;line-height:1.8}
+  .hero-nom{white-space:normal;font-size:clamp(2.8rem,15vw,5rem);line-height:.92}
+  .hero-nom .second{display:block}
+  .donnees div{flex-direction:column;gap:2px;align-items:flex-start}
+  .donnees dd{text-align:left}
+  .fil{grid-template-columns:1fr;gap:4px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  body,.label,figcaption::before,.encadre{transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-mobile" id="progress" aria-hidden="true"></div>
+
+<nav class="rail" aria-label="Sommaire du dossier">
+  <div class="rail-ligne"></div>
+  <div class="rail-fill" id="railFill"></div>
+  <div class="rail-liens" id="railLiens"></div>
+</nav>
+
+<main>
+
+  <header class="hero bande">
+    <p class="hero-tag">Dossier personnage · Los Santos</p>
+    <h1 class="hero-nom">ZION <span class="second">Leroy</span></h1>
+    <p class="hero-phrase">Il n'a jamais rien écrit, jamais rien gardé. Tout ce qu'il sait tient dans une tête qu'il ne sait plus lire.</p>
+  </header>
+  <div class="bande"><div class="regle"></div></div>
+
+  <!-- ============ IDENTITE ============ -->
+  <section class="bande reveal" id="identite" data-temp="feutre" data-titre="Identité">
+    <div class="tete"><span class="label">Identité</span></div>
+    <div class="fiche">
+      <div>
+        <p class="fiche-desc">Sec et nerveux, mâchoire fine, cheveux courts. Des mains qui ne tiennent jamais en place. Une cicatrice de douze centimètres le long du tibia gauche, une autre sur la clavicule droite. Il ne les montre pas.</p>
+        <dl class="donnees">
+          <div><dt>Naissance</dt><dd>3 mars 1998</dd></div>
+          <div><dt>Âge</dt><dd>28 ans</dd></div>
+          <div><dt>Origine</dt><dd>Las Vegas, Nevada</dd></div>
+          <div><dt>Taille</dt><dd>1m78, 70 kg</dd></div>
+          <div><dt>Classe sociale</dt><dd>Catégorie C</dd></div>
+          <div><dt>Statut</dt><dd>Nouvel arrivant</dd></div>
+        </dl>
+        <div class="traits">
+          <span>Observateur</span><span>Économe en mots</span><span>Rend service d'abord</span>
+          <span>Casse vite sur certains sujets</span><span>Joueur qui s'ignore</span><span>Ne rend jamais les coups</span>
+        </div>
+      </div>
+    </div>
+    <div class="colonne">
+      <p>Avant, il s'habillait pour disparaître : sweat gris, casquette, rien qui accroche l'œil. Aujourd'hui c'est l'inverse. Pièces de marque, coupes nettes, du beau streetwear en semaine et du costume ajusté quand il veut en imposer. Un gamin qui a passé vingt ans à être invisible et qui a découvert qu'on l'écoute mieux quand il est bien habillé.</p>
+    </div>
+  </section>
+
+  <!-- ============ ORIGINES ============ -->
+  <section class="bande reveal" id="origines" data-temp="feutre" data-titre="Origines">
+    <div class="tete">
+      <span class="label">Quartier nord de Vegas</span>
+      <h2>Eli avait le bagou, Zion avait <em>l'œil</em></h2>
+    </div>
+    <div class="colonne">
+      <p>Quartier nord de Vegas, loin du Strip. Père veilleur de nuit dans un hôtel, mère femme de chambre dans un autre. Des parents présents sur le papier, jamais à la maison en pratique. Pas de violence, pas de drame, juste deux adultes épuisés qui rentraient à des heures opposées.</p>
+      <p>Zion a été élevé par son grand frère Elijah, cinq ans de plus. Eli avait le bagou, Zion avait l'œil. À douze ans ils faisaient déjà la fouine dans le quartier : qui trompe qui, qui a une dette, quel gérant pique dans la caisse. Eli vendait l'info, Zion la trouvait.</p>
+      <p>Vers vingt ans, Zion a compris qu'il n'avait plus besoin de son frère pour vendre. Il s'est mis à son compte : valets, serveurs, femmes de chambre, agents de sécurité. Il payait bien, il ne balançait jamais ses sources, il tenait parole. À Vegas, ça vaut plus qu'un diplôme.</p>
+    </div>
+  </section>
+
+  <!-- ============ LE JEU ============ -->
+  <section class="bande reveal" id="jeu" data-temp="feutre" data-titre="Le jeu">
+    <div class="tete">
+      <span class="label">Ce qu'il refuse d'appeler une addiction</span>
+      <h2>Le moment juste avant que la <em>carte tombe</em></h2>
+    </div>
+    <div class="colonne">
+      <p>Ce que Zion a hérité d'Eli, ce n'est pas seulement le métier. C'est le jeu.</p>
+      <p>Leur père n'avait jamais touché une table de sa vie, mais il rentrait de l'hôtel avec des histoires : le type qui avait tout perdu au craps, celui qui était reparti avec trois cent mille. À neuf ans, Zion connaissait les règles du blackjack sans avoir jamais vu une carte. À quatorze, Eli l'emmenait parier sur des matchs de lycée dans des arrière-boutiques.</p>
+      <p>Eli jouait pour gagner. Zion joue pour le moment juste avant que la carte tombe. Ce n'est pas la même chose, et c'est bien pire.</p>
+      <p>Il ne se dit pas joueur. Il dit qu'il passe le temps, qu'il connaît ses limites, qu'il a vu ce que ça a fait à son frère, et c'est précisément ce qui lui sert de preuve qu'il n'est pas comme lui. Il a payé la dette d'Eli. Dans sa tête, ça fait de lui celui qui contrôle.</p>
+      <p>La réalité est plus simple : il joue toutes les semaines, et il perd plus qu'il ne l'admet.</p>
+    </div>
+    <ul class="liste">
+      <li><b>Les paris sportifs surtout</b>, parce que ça se fait seul et que ça ressemble à du travail. Il analyse, il croise des infos, il se persuade que c'est une compétence et pas un vice.</li>
+      <li><b>Les tables quand il a bu</b> ou quand il vient de finir un coup. Blackjack. Jamais les machines : les machines, se dit-il, c'est pour les gens qui ne réfléchissent pas.</li>
+      <li><b>Il gagne assez souvent</b> pour entretenir l'illusion. C'est le problème.</li>
+    </ul>
+    <div class="encadre">
+      <span class="etiquette">Deux tells repérables par les autres joueurs</span>
+      <p>Il connaît les cotes de mémoire sur à peu près tout. Et il ne dit jamais combien il a perdu : quand on lui demande, il sourit et il change de sujet. C'est le seul mensonge qu'il fait sans effort.</p>
+    </div>
+    <div class="colonne">
+      <p>À Los Santos, il a trouvé pire qu'une table. Chaque semaine, Neuralis tire un nom et un citoyen passe à Eden. La ville entière appelle ça un honneur, Zion y voit un tirage. Il a commencé à noter les sélectionnés : métier, quartier, catégorie, ancienneté. Il cherche le motif. Il se dit que c'est du renseignement. C'est exactement la même chose qu'analyser des cotes.</p>
+      <p>Le reste ne le tient pas. Il boit, il fume, il a goûté à ce qui traînait dans les soirées privées et il n'a jamais rien redemandé. Une seule chose s'accroche à lui, et c'est la seule qu'il refuse d'appeler une addiction.</p>
+    </div>
+  </section>
+
+  <!-- ============ LA DETTE ============ -->
+  <section class="bande reveal" id="dette" data-temp="rouille" data-titre="La dette">
+    <div class="tete">
+      <span class="label">2023</span>
+      <h2>Se porter <em>garant</em></h2>
+    </div>
+    <div class="colonne">
+      <p>Eli, lui, est resté du côté du bagou. Paris sportifs, puis paris sur ses propres paris. En 2023 il devait soixante-deux mille dollars à Sal Bregman, un prêteur qui opère depuis une boutique de prêt sur gages de Charleston Boulevard.</p>
+      <p>Zion s'est porté garant. La dette est devenue la sienne, intérêts compris. Avec ce qu'il gagnait à vendre du renseignement, il en avait pour huit ans. Bregman ne menaçait pas, il attendait, et c'était pire.</p>
+    </div>
+    <div class="encadre rouille">
+      <span class="etiquette">Le point aveugle du personnage</span>
+      <p>Elijah ne sait pas. Il croit que son petit frère a arrangé le truc, il ignore comment, et il n'a jamais posé la question. Pour Zion c'est tenable tant que ça reste enterré. Le jour où Eli comprend que son frère a vendu un homme pour éponger ses paris, la relation explose.</p>
+    </div>
+  </section>
+
+  <!-- ============ LE CONTRAT ============ -->
+  <section class="bande reveal" id="contrat" data-temp="rouille" data-titre="Le contrat">
+    <div class="tete">
+      <span class="label">Un contact anonyme</span>
+      <h2>Le montant qui aurait dû <em>l'alerter</em></h2>
+    </div>
+    <div class="colonne">
+      <p>Il est arrivé par un des canaux que Zion utilisait pour son propre commerce : un contact anonyme, une adresse qui n'a servi qu'une fois. Pas de rencontre, pas de voix, jamais.</p>
+    </div>
+    <ul class="liste">
+      <li>Faire tomber Roy Palmer.</li>
+      <li>Réunir de quoi couler le Casino Palmer, et le livrer aux autorités.</li>
+      <li>Ne pas toucher à Megan.</li>
+      <li>Rien sur Jenna. Elle n'était même pas mentionnée.</li>
+      <li><b>Quatre-vingt mille dollars</b>, moitié à l'avance, en liquide déposé dans un casier de gare routière.</li>
+    </ul>
+    <div class="colonne">
+      <p>C'est ce chiffre qui aurait dû l'alerter. Il couvrait la dette, les intérêts, et laissait de quoi se refaire une vie. Le commanditaire savait exactement combien Zion devait, et à qui. Quelqu'un avait regardé sa vie d'assez près pour savoir sur quel bouton appuyer, et savait peut-être aussi qu'un type qui rembourse une dette de jeu en jouant ne rembourse rien.</p>
+      <p>Il a accepté en se racontant que ce serait comme les autres fois : entrer, regarder, sortir. Il n'avait jamais travaillé sur quelqu'un pendant des mois. Il n'avait jamais travaillé sur quelqu'un qui l'aimait bien.</p>
+      <p>Il a soldé Bregman trois semaines plus tard. Bregman n'a pas demandé d'où venait l'argent. Il n'a plus jamais rien demandé du tout.</p>
+      <p>Il restait un peu moins de vingt mille. De quoi partir proprement et recommencer ailleurs, il le savait. Il n'en a rien fait d'autre que des fringues et des tables. Quand il a quitté Vegas, il ne lui restait que ce qu'il avait sur le dos. C'est encore le cas : ce qu'il porte est littéralement tout ce qui reste des quatre-vingt mille.</p>
+    </div>
+  </section>
+
+  <!-- ============ ROY ============ -->
+  <section class="bande reveal" id="roy" data-temp="rouille" data-titre="Roy">
+    <div class="tete">
+      <span class="label">Celui qui a ouvert la porte</span>
+      <h2>Le seul qui ait essayé de le <em>protéger</em></h2>
+    </div>
+    <div class="colonne">
+      <p>Il n'a pas eu besoin de forcer la porte. Roy l'a ouverte.</p>
+      <p>Le casino n'était pas une couverture : c'était un endroit où Zion allait déjà. Roy l'a d'abord remarqué comme client. Un gamin nerveux qui jouait bien, qui savait quand se coucher, qui restait trop longtemps. Roy connaissait ce regard, il avait grandi dedans.</p>
+      <p>Puis il a vu autre chose : un gosse de rien qui se débrouille, qui lit une pièce en dix secondes, qui sait à qui parler. Son lui d'avant. Il l'a pris sous son aile, verres au bar, soirées privées, conseils qu'on ne donne pas à un employé. Il lui a appris à tenir une table, à négocier, à se taire au bon moment.</p>
+      <p>Et Roy l'a couvert. Il a effacé des ardoises, il a fait sauter des additions. Une fois, il lui a dit de rentrer chez lui au lieu de le laisser continuer. Roy a été le seul à lui dire d'arrêter. Zion accumulait des preuves contre lui dans la même soirée.</p>
+    </div>
+    <div class="encadre rouille">
+      <span class="etiquette">Le détail le plus lourd du personnage</span>
+      <p>L'homme qu'il a fait tomber est le seul qui ait essayé de le protéger de lui-même.</p>
+    </div>
+    <div class="colonne">
+      <p>Ce qu'il a ressenti, il ne le sait toujours pas. Il a joué un rôle si bien qu'il n'arrive plus à distinguer ce qui était calculé de ce qui était vrai. Il y a eu des soirs où il a ri sans penser au contrat. Il y a eu des soirs où il a compté les jours. Les deux sont vrais, et il ne saura jamais lequel pesait plus lourd. C'est pour ça qu'il n'arrive pas à tourner la page : on peut solder une trahison, on ne peut pas solder une question sans réponse.</p>
+    </div>
+  </section>
+
+  <!-- ============ MEGAN ============ -->
+  <section class="bande reveal" id="megan" data-temp="rouille" data-titre="Megan">
+    <div class="tete">
+      <span class="label">Un secret partagé</span>
+      <h2>Proches le temps d'une <em>soirée</em></h2>
+    </div>
+    <div class="colonne">
+      <p>Il la connaissait depuis longtemps, sans jamais être proche. Pour lui, Megan c'était d'abord la femme de Roy, croisée à travers l'entourage et les soirées du casino.</p>
+      <p>Puis il y a eu ces soirées privées, avec des connaissances communes, loin de Roy, où l'ambiance était plus détendue. Zion y a découvert une facette qu'il ne voyait jamais en public. Il savait qu'elle consommait parfois. Il savait surtout que Roy n'était pas au courant.</p>
+      <p>Moins maîtresse de ses pensées, elle se livrait. Elle lui parlait de la pression, de ses doutes, de cette vie qui commençait par moments à la dépasser. Elle s'est demandée devant lui si elle avait bien fait de suivre Roy.</p>
+    </div>
+    <div class="replique">
+      <p><span class="qui">Megan</span>Tu dis rien à Roy. C'est notre petit secret.</p>
+    </div>
+    <div class="colonne">
+      <p>Il a accepté sans chercher à comprendre davantage. Depuis, une complicité discrète : ils peuvent discuter, rire, passer une vraie soirée ensemble. Mais dès que Roy est là, Megan devient distante. Elle fait comme si elle le connaissait à peine, comme si ces moments n'avaient jamais existé.</p>
+      <p>Une connaissance avec qui il partage un secret. Proches le temps d'une soirée, presque étrangers le lendemain.</p>
+      <p>Il n'a jamais su quoi faire de ce secret. Il ne l'a pas vendu, alors qu'il aurait pu. Il ne s'est jamais demandé pourquoi. La consigne disait de ne pas toucher à Megan, il n'a jamais su si c'était pour la protéger, ou parce que le commanditaire était quelqu'un qui tenait à elle.</p>
+    </div>
+  </section>
+
+  <!-- ============ LA CHUTE ============ -->
+  <section class="bande reveal" id="chute" data-temp="rouille" data-titre="La chute">
+    <div class="tete">
+      <span class="label">Enquête, accident, départ</span>
+      <h2>Les freins qui ne <em>répondent pas</em></h2>
+    </div>
+    <div class="colonne">
+      <p>Il a livré aux autorités ce qu'il avait accumulé sur les entorses du casino. Enquête fiscale, gel des comptes, dettes qui remontent à la surface. Le Casino Palmer a coulé en quelques mois.</p>
+      <p>Puis l'accident. Un soir, plusieurs verres au bar du casino avec Roy, la route au retour, les freins qui ne répondent pas. Fractures multiples, trois semaines d'hôpital.</p>
+      <p>À son réveil, la police lui apprend que la moto avait été sabotée.</p>
+      <p>Il a désigné Roy. Il a dit aux enquêteurs qu'il détenait des dossiers compromettants et que Roy avait pu vouloir s'en débarrasser. Puis il a remis ces dossiers.</p>
+      <p>Roy n'a jamais été inculpé, faute d'éléments. Les Palmer ont quitté Las Vegas discrètement, dans un vieux van.</p>
+    </div>
+    <div class="encadre rouille">
+      <span class="etiquette">Le point à ne pas trancher</span>
+      <p>Zion soupçonne Roy pour le sabotage, il n'en a aucune preuve, et il n'en aura peut-être jamais. Ni le joueur ni le personnage n'ont la réponse. C'est ce qui donnera son poids à la confrontation le jour où elle arrivera.</p>
+    </div>
+  </section>
+
+  <!-- ============ LA MEMOIRE ============ -->
+  <section class="bande reveal" id="memoire" data-temp="rouille" data-titre="La mémoire">
+    <div class="tete">
+      <span class="label">Ce qu'il a gardé</span>
+      <h2>Il <em>est</em> le dossier</h2>
+    </div>
+    <div class="colonne">
+      <p>Il n'a rien gardé. Pas un papier, pas un fichier, pas une copie. Il a tout mémorisé.</p>
+      <p>C'était déjà son métier avant : un informateur qui laisse des traces ne fait pas long feu. Il a appris jeune à retenir des chiffres, des noms, des dates, l'ordre d'une liste d'invités. Ce qu'il n'a pas remis à la police, il se le récite. Des comptes, des montants, des noms qui passaient aux soirées privées et qui n'auraient jamais dû figurer nulle part.</p>
+      <p>Ça le rend introuvable. On ne saisit pas une mémoire, aucun drone ne la scanne, aucune perquisition ne la trouve.</p>
+      <p>Ça le rend aussi invérifiable. Il ne peut rien prouver à personne et il ne peut rien poser nulle part. Il est le dossier. Le jour où quelqu'un comprend ça, il devient soit la chose la plus précieuse de la ville, soit la plus simple à faire disparaître.</p>
+    </div>
+    <div class="encadre rouille">
+      <span class="etiquette">Le doute qu'il n'avoue à personne</span>
+      <p>Il s'est réveillé à l'hôpital le crâne cogné, après trois semaines dont il ne garde presque rien. Il ne sait plus si tout est encore là, ni si ce qu'il récite est exact ou si sa tête a rempli les trous toute seule.</p>
+    </div>
+  </section>
+
+  <!-- ============ LOS SANTOS ============ -->
+  <section class="bande reveal" id="los-santos" data-temp="acier" data-titre="Los Santos">
+    <div class="tete">
+      <span class="label">Entré par le Sud</span>
+      <h2>Son métier <em>n'existe plus</em></h2>
+    </div>
+    <div class="colonne">
+      <p>Il est entré par le Sud, comme n'importe quel arrivant de l'extérieur. Neuralis lui a attribué une carte de catégorie C, un logement dans les zones les plus pauvres et un dossier vide. Vingt-huit ans de vie et une réputation solide à Vegas : zéro ici.</p>
+      <p>Ce qui l'a amené, c'est une piste maigre. Les Palmer sont partis dans un vieux van, et quelque part sur la route quelqu'un a fini par lâcher le nom de Los Santos. C'est tout ce qu'il avait : une ville. Il ne sait ni comment ils sont entrés, ni quand, ni ce qu'ils sont devenus depuis.</p>
+      <p>Et eux ne savent pas qu'il est là.</p>
+    </div>
+    <div class="encadre">
+      <span class="etiquette">Le déséquilibre</span>
+      <p>Zion a l'avantage et il ne sait pas quoi en faire. Il peut passer des mois à les chercher sans se montrer, comme il peut tomber sur Roy au coin d'une rue sans l'avoir décidé. Le jour où Roy le voit, l'avantage disparaît d'un coup, et c'est Roy qui choisira ce qui se passe ensuite.</p>
+    </div>
+    <div class="colonne">
+      <p>Le vrai choc, ce n'est pas la catégorie C. C'est que son métier n'existe plus.</p>
+      <p>À Vegas, il achetait un valet, une femme de chambre, un type au standard, et il savait tout d'un hôtel en trois jours. Ici, l'information ne circule pas entre les gens : elle remonte à Neuralis. Les drones voient avant les témoins. Et personne ne parle à un inconnu de catégorie C qui pose des questions, parce que poser des questions se remarque.</p>
+      <p>Il repart de zéro avec un seul actif : une mémoire pleine de choses qu'il ne peut montrer à personne.</p>
+      <p>Et il y a Roy. Les Palmer sont entrés de l'extérieur eux aussi, donc en catégorie C, comme lui. L'ancien patron du Casino Palmer et le gamin qui l'a fait tomber sont revenus exactement au même point de départ. Zion n'a pas encore décidé si c'est une justice ou une humiliation.</p>
+    </div>
+  </section>
+
+  <!-- ============ AUJOURD'HUI ============ -->
+  <section class="bande reveal" id="aujourdhui" data-temp="acier" data-titre="Aujourd'hui">
+    <div class="tete">
+      <span class="label">Rien de stable</span>
+      <h2>Il accumule, comme un <em>réflexe</em></h2>
+    </div>
+    <div class="colonne">
+      <p>Rien de stable. Il prend ce qui se présente : un coup de main, une course, un service rendu à quelqu'un qui saura s'en souvenir. Il mange irrégulièrement et il le cache bien.</p>
+      <p>Ce qu'il fait vraiment, c'est reconstruire. Il apprend la ville comme il apprenait un hôtel : qui tient quoi, qui doit à qui, où les drones passent et à quelle heure. Il ne vend encore rien. Il accumule, parce que c'est le seul réflexe qu'il n'a pas perdu, et parce qu'un jour ça revaudra quelque chose.</p>
+      <p>Physiquement, il est presque remis. Il ne boite plus, sauf par temps froid, et il a des douleurs qu'il ne mentionne jamais. Il dit que ça va. Il le dit vite.</p>
+      <p>Il s'habille toujours bien. C'est la dernière chose qui lui reste de l'autre vie, et il tient dessus comme un joueur tient sur une mise : tant qu'il a l'air de quelqu'un, il peut encore le redevenir.</p>
+      <p>Depuis la chute, il joue plus qu'avant. Il ne fait pas le lien. Tout le monde autour de lui le fait.</p>
+      <p>Il ne dort presque pas. Ses nuits se passent dehors, à marcher, à regarder qui rentre et qui sort, à retenir les horaires des drones sans se l'avouer. C'est comme ça qu'il ramasse la moitié de ce qu'il sait.</p>
+      <p>Il n'a rien rapporté de Vegas. Pas une photo, pas un objet, rien. Il est parti les mains vides et il le raconte comme si c'était un choix.</p>
+      <p>Il ne connaît personne ici. Aucun contact, aucun ami, personne qui lui doive quoi que ce soit. C'est la première fois de sa vie qu'il part vraiment de zéro.</p>
+    </div>
+    <div class="encadre">
+      <span class="etiquette">Un détail qu'il ne commente pas</span>
+      <p>Il est remonté sur une moto. Il s'est forcé, seul, sans en parler à personne, et il a tenu. Il en conduit encore, mais avant de démarrer, il serre toujours le levier de frein deux fois pour rien.</p>
+    </div>
+  </section>
+
+  <!-- ============ TEMPERAMENT ============ -->
+  <section class="bande reveal" id="temperament" data-temp="acier" data-titre="Tempérament">
+    <div class="tete">
+      <span class="label">Tempérament</span>
+      <h2>Il observe avant de <em>parler</em></h2>
+    </div>
+    <div class="colonne">
+      <p>C'est son mode par défaut et c'est un réflexe professionnel : il lit une pièce, repère qui décide, qui ment, qui a peur, et il parle en dernier. Poli, calme, économe en mots. Les gens le trouvent agréable et ne réalisent pas toujours qu'il n'a rien dit de lui.</p>
+      <p>Mais il casse vite sur certains sujets. Là où le contrôle lâche, ça part en quelques secondes et ça surprend tout le monde, lui le premier.</p>
+    </div>
+    <ul class="liste">
+      <li><b>Les motos, les freins, les accidents de route.</b> Il change de sujet ou il quitte la pièce.</li>
+      <li><b>Le mot balance.</b> Même en blague, même pas dirigé contre lui.</li>
+      <li><b>Son frère.</b> Toute question sur Eli, sa dette, son argent.</li>
+      <li><b>Roy Palmer.</b> Si quelqu'un parle de lui comme d'un pauvre type, Zion le défend, et il ne s'explique pas pourquoi.</li>
+      <li><b>Qu'on le compare à son frère</b>, surtout sur le jeu. Le sujet le plus dangereux, parce que c'est le seul où il sait qu'il a tort.</li>
+      <li><b>Qu'on lui dise d'arrêter de jouer.</b> Il entend la voix de Roy et il part au quart de tour.</li>
+      <li><b>Qu'on lui dise qu'il a eu de la chance</b> de s'en sortir.</li>
+    </ul>
+    <div class="colonne">
+      <p>Après coup, il se referme et s'excuse mal. Il déteste s'être laissé voir.</p>
+    </div>
+  </section>
+
+  <!-- ============ MANIERES ============ -->
+  <section class="bande reveal" id="manieres" data-temp="acier" data-titre="Manières">
+    <div class="tete">
+      <span class="label">Manières</span>
+      <h2>Il rend service <em>avant</em> de demander</h2>
+    </div>
+    <div class="colonne">
+      <p>C'est sa méthode et elle n'a pas changé depuis Vegas. Il repère ce dont quelqu'un a besoin, il le lui donne sans rien réclamer, et il attend. La dette morale fait le reste. Il paie rarement pour une information : il la laisse venir.</p>
+      <p><b>Il se raconte à moitié.</b> Quand on lui demande d'où il vient, il dit la vérité : Las Vegas, des petits boulots, rien de glorieux. Il ne ment presque jamais, il coupe. C'est plus solide qu'une fausse identité et ça résiste à la vérification.</p>
+      <p><b>Ses mains ne tiennent pas en place.</b> Il les frotte, il tapote, il déplace les objets sur une table sans s'en rendre compte. C'est ce que les gens retiennent de lui, et c'est la seule chose qu'il n'arrive pas à contrôler.</p>
+      <p><b>Il encaisse sans rendre.</b> Il ne se bat pas. Si ça part, il prend et il se relève. Ce n'est pas de la lâcheté : un type qu'on a frappé et qui n'a rien rendu cesse d'être une menace, et on recommence à parler devant lui.</p>
+      <p><b>Il ne tuera pas.</b> C'est sa seule limite nette, celle qu'il s'énonce à lui-même. Il ne s'est jamais demandé comment elle tient avec le reste de ce qu'il a fait.</p>
+    </div>
+  </section>
+
+  <!-- ============ CE QU'IL VEUT ============ -->
+  <section class="bande reveal" id="objectifs" data-temp="acier" data-titre="Ce qu'il veut">
+    <div class="tete">
+      <span class="label">Ni vengeance ni pardon</span>
+      <h2>Des <em>réponses</em>, dans cet ordre</h2>
+    </div>
+    <ul class="liste">
+      <li><b>Qui payait.</b> Le commanditaire existe toujours quelque part, et il connaissait sa vie mieux que lui.</li>
+      <li><b>Qui a coupé les freins.</b> Roy, le commanditaire, ou quelqu'un d'autre.</li>
+      <li><b>Ce que Roy est devenu.</b> Il ne sait pas s'il veut le retrouver ou juste savoir qu'il est en vie.</li>
+      <li><b>Ce qu'il a vraiment ressenti</b> pendant ces mois. Celle-là, il ne l'admettra jamais à voix haute.</li>
+    </ul>
+    <div class="colonne">
+      <p>Il est venu ici parce qu'une piste y menait. Il ne dira à personne laquelle.</p>
+      <p>Socialement, il ne vise rien. La catégorie C ne l'humilie pas, Eden ne le fait pas rêver, monter dans la hiérarchie ne l'intéresse pas. Il veut ses réponses et il repartira une fois qu'il les aura, c'est du moins ce qu'il se dit. Il n'a aucune attache ici et il n'en cherche pas.</p>
+    </div>
+  </section>
+
+  <!-- ============ FILS ROUGES ============ -->
+  <section class="bande reveal" id="fils" data-temp="acier" data-titre="Fils rouges">
+    <div class="tete">
+      <span class="label">Partie hors roleplay</span>
+      <h2>Fils <em>rouges</em></h2>
+    </div>
+    <dl class="fils">
+      <div class="fil"><dt>Le commanditaire</dt><dd>Aucun intermédiaire à secouer. La seule piste : comment le contact l'a joint, qui connaissait ce canal, et surtout comment cette personne savait le montant exact de sa dette. Peu de gens pouvaient le savoir.</dd></div>
+      <div class="fil"><dt>Bregman</dt><dd>Il n'a rien commandité, mais il reste une porte, et il est resté à Vegas. Le seul homme qui pourrait parler est désormais de l'autre côté de la sortie.</dd></div>
+      <div class="fil"><dt>La confrontation avec Roy</dt><dd>Zion veut savoir, Roy veut comprendre pourquoi. Aucun des deux n'a la réponse que l'autre cherche. Et ils sont tous les deux en catégorie C, au même point de départ.</dd></div>
+      <div class="fil"><dt>Megan</dt><dd>Le secret tient toujours. S'ils se recroisent, il découvrira lequel des deux a le plus à perdre.</dd></div>
+      <div class="fil"><dt>Jenna</dt><dd>Jamais mentionnée dans le contrat. Zion ne sait même pas quel âge elle a, ni ce qu'elle sait de la chute du casino.</dd></div>
+      <div class="fil"><dt>Elijah</dt><dd>Resté à Vegas, ou entré lui aussi. Il ignore toujours ce que son frère a fait pour lui.</dd></div>
+      <div class="fil"><dt>La mémoire</dt><dd>Il est le seul support de ce qu'il n'a pas remis. Rien à saisir, rien à prouver, et une tête cognée dont il ne se fie plus tout à fait. Qui le sait le veut, ou veut le faire taire.</dd></div>
+      <div class="fil"><dt>La rechute</dt><dd>Rien de stable, un trou à combler, et une ville où le statut se perd. Il peut se refaire une dette sans que personne ne l'y pousse, et n'importe qui peut la racheter pour le tenir. C'est exactement comme ça qu'on l'a eu la première fois.</dd></div>
+      <div class="fil"><dt>La Sélection</dt><dd>Il l'analyse comme un tirage truqué. Chercher le motif est un moteur de jeu à lui seul, et une bonne façon de se faire remarquer par les mauvaises personnes.</dd></div>
+      <div class="fil"><dt>Neuralis et la N.S.U</dt><dd>Un homme qui retient tout et n'écrit rien est un cas particulier dans une ville qui archive tout. Ça finit par se savoir.</dd></div>
+    </dl>
+    <div class="encadre">
+      <span class="etiquette">Ce qui reste ouvert</span>
+      <ul class="liste">
+        <li>L'identité du commanditaire, et si Megan y est liée.</li>
+        <li>Qui a saboté la moto.</li>
+        <li>Où est Eli aujourd'hui, et ce qu'il finira par apprendre.</li>
+        <li>Ce que Zion fera de ce qu'il porte dans la tête.</li>
+        <li>Comment il compte remonter de catégorie C, et jusqu'où il ira pour ça.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Zion Leroy · Dossier personnage · Los Santos</p>
+</footer>
+
+<script>
+(function(){
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-temp]'));
+  var reduire = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var teintes = {feutre:'#4FA08A', rouille:'#C8703C', acier:'#6FA8B8'};
+
+  var conteneur = document.getElementById('railLiens');
+  var liens = sections.map(function(s,i){
+    var a = document.createElement('a');
+    a.href = '#' + s.id;
+    a.textContent = s.dataset.titre || s.id;
+    a.style.top = (8 + (i / (sections.length - 1)) * 82) + '%';
+    conteneur.appendChild(a);
+    return a;
+  });
+
+  var railFill = document.getElementById('railFill');
+  var progress = document.getElementById('progress');
+  var temp = '';
+
+  function auScroll(){
+    var h = document.documentElement;
+    var r = Math.max(0, Math.min(1, h.scrollTop / (h.scrollHeight - h.clientHeight || 1)));
+    railFill.style.height = (r * 100) + '%';
+    progress.style.width = (r * 100) + '%';
+
+    var milieu = window.innerHeight * 0.42, active = sections[0];
+    sections.forEach(function(s){ if(s.getBoundingClientRect().top <= milieu) active = s; });
+
+    if(active.dataset.temp !== temp){
+      temp = active.dataset.temp;
+      document.documentElement.style.setProperty('--accent', teintes[temp]);
+      document.body.classList.toggle('froid', temp === 'acier');
+    }
+    liens.forEach(function(a){ a.classList.toggle('actif', a.getAttribute('href') === '#' + active.id); });
+  }
+
+  var attente = false;
+  window.addEventListener('scroll', function(){
+    if(attente) return; attente = true;
+    requestAnimationFrame(function(){ auScroll(); attente = false; });
+  }, {passive:true});
+  window.addEventListener('resize', auScroll);
+  auScroll();
+
+  if(!reduire && 'IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vu'); obs.unobserve(e.target); } });
+    },{threshold:.04});
+    document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('vu'); });
+  }
+})();
+</script>
+
+</body>
+</html>
